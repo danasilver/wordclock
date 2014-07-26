@@ -17,7 +17,9 @@
   var to = 'to';
   var oclock = 'oclock';
 
-  function getClockComponents(hour, minute) {
+  function getClockComponents(date) {
+    var hour = date.getHours();
+    var minute = date.getMinutes();
     var clockComponents = [];
 
     var minutesRoundedToFive = roundToNearestFive(minute);
@@ -79,14 +81,8 @@
 
   function updateClock() {
     var date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
 
-    var newClockComponents = getClockComponents(hours, minutes);
-
-    var lastHours = minutes === 0 ? hours - 1 : hours;
-    var lastMinutes = minutes === 0 ? 60 : minutes - 1;
-
+    var newClockComponents = getClockComponents(date);
     var currentClockComponents = getActiveComponents();
 
     var addClasses = [];
