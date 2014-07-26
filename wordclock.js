@@ -58,31 +58,47 @@
     return modFive > 2.5 ? n + 5 - modFive : n - modFive;
   }
 
+  function getActiveComponents() {
+    var activeComponents = [];
+    $('.highlight').each(function() {
+      var classNames = [];
+      $(this).attr('class').split(/\s+/).forEach(function(className) {
+        if (className !== 'highlight') classNames.push(className);
+      });
+      classNames.sort(function(a, b) {
+        if (a === 'minute' || a === 'hour') return -1;
+        if (b === 'minute' || b === 'hour') return 1;
+        return 0;
+      });
+      if (activeComponents.indexOf(classNames.join('.')) === -1) {
+        activeComponents.push(classNames.join('.'));
+      }
+    });
+    return activeComponents;
+  }
+
   function updateClock() {
     var date = new Date();
     var hours = date.getHours();
     var minutes = date.getMinutes();
 
-    var clockComponents = getClockComponents(hours, minutes);
+    var newClockComponents = getClockComponents(hours, minutes);
 
     var lastHours = minutes === 0 ? hours - 1 : hours;
     var lastMinutes = minutes === 0 ? 60 : minutes - 1;
 
-    var lastClockComponents = [];
-    if ($('.highlight').length > 0) {
-      lastClockComponents = getClockComponents(lastHours, lastMinutes);
-    }
+    var currentClockComponents = getActiveComponents();
 
     var addClasses = [];
-    clockComponents.forEach(function(component) {
-      if (lastClockComponents.indexOf(component) === -1) {
+    newClockComponents.forEach(function(component) {
+      if (currentClockComponents.indexOf(component) === -1) {
         addClasses.push('td.' + component);
       }
     });
 
     var removeClasses = [];
-    lastClockComponents.forEach(function(component) {
-      if (clockComponents.indexOf(component) === -1) {
+    currentClockComponents.forEach(function(component) {
+      if (newClockComponents.indexOf(component) === -1) {
         removeClasses.push('td.' + component);
       }
     });
