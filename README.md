@@ -4,7 +4,7 @@ Tells the time to the nearest five minutes and looks good doing it.
 
 ![screenshot](screenshot.png)
 
-Potential features:
+### Potential features:
 
  - Change the colors
  - Temperature
