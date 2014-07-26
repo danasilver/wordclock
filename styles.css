@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:500);
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Raleway;
+  font-weight: 500;
+  color: #333;
+  background-color: rgb(173, 111, 38);
+}
+
+.container {
+  width: 720px;
+  margin: auto;
+}
+
+h1 {
+  padding-left: 10px;
+}
+
+small {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px solid #333;
+}
+
+table td {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  transition: color .2s linear, text-shadow .2s linear;
+}
+
+table td.highlight {
+  color: rgb(240, 226, 209);
+  text-shadow: 0 0 2px rgb(240, 226, 209);
+  transition: color .2s linear, text-shadow .2s linear;
+}
+
+table td.degrees,
+table td.highlight-weather {
+  color: rgb(163, 226, 255);
+  text-shadow: 0 0 2px rgb(163, 226, 255);
+}
